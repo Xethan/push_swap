@@ -6,69 +6,36 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:26:10 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/02/27 15:34:24 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/03 17:10:58 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		get_max(int *tab, int size)
-{
-	int		max;
-	int		i;
-
-	i = 1;
-	max = tab[0];
-	while (i != size)
-	{
-		if (tab[i] > max)
-			max = tab[i];
-		i++;
-	}
-	return (max);
-}
-
-int		get_min(int *tab, int size)
-{
-	int		min;
-	int		i;
-
-	i = 1;
-	min = tab[0];
-	while (i != size)
-	{
-		if (tab[i] < min)
-			min = tab[i];
-		i++;
-	}
-	return (min);
-}
-
-int		check_tab(int *tab, int size)
+int		r_or_rr(t_pile st)
 {
 	int		i;
 
 	i = 0;
-	while (i != size - 1)
-	{
-		if (tab[i] < tab[i + 1])
-			return (0);
+	if (st.pile[B][END_B] < st.pile[A][END_A] && st.pile[B][END_B] > st.pile[A][0])
+		return (0);
+	while (st.pile[B][END_B] > st.pile[A][i] || st.pile[B][END_B] < st.pile[A][i + 1])
 		i++;
-	}
-	return (1);
+	return (i < st.s1 / 2) ? - i - 1 : END_A - i;
 }
 
-t_pile	split_sort(t_pile st)
+t_pile	insert_sort(t_pile st)
 {
 	int		max;
 	int		min;
-	int		i;
+	int		ret;
 
-	i = 0;
-	while (st.s1 != 2)
+	while (check_tab(st.pile[A], st.s1) != 1)
 	{
-		st = push(B, st);
-		i++;
+		if (st.pile[A][END_A] > st.pile[A][END_A - 1])
+			st = push(B, st);
+		else
+			st = rotate(A, st);
 	}
 	//disp_piles(st);
 	while (st.s2 != 0)
@@ -76,39 +43,26 @@ t_pile	split_sort(t_pile st)
 		max = get_max(st.pile[A], st.s1);
 		min = get_min(st.pile[A], st.s1);
 		if (st.pile[B][END_B] > max)
-		{
-			while (st.pile[A][END_A] != min)
-			{
-				st = rotate(A, st); // ra ou rra pour opti
-				i++;
-			}
-		}
+			ret = r_or_rr_cmp_max(st, max);
 		else if (st.pile[B][END_B] < min)
-		{
-			while (st.pile[A][0] != max)
-			{
-				st = rotate(A, st); // ra ou rra pour opti
-				i++;
-			}
-		}
+			ret = r_or_rr_cmp_min(st, min);
 		else
+			ret = r_or_rr(st);
+		while (ret != 0)
 		{
-			while (!(st.pile[B][END_B] < st.pile[A][END_A] && st.pile[B][END_B] > st.pile[A][0]))
-			{
-				st = rotate(A, st); // ra ou rra pour opti
-				i++;
-			}
+			st = (ret > 0) ? rotate(A, st) : reverse_rotate(A, st);
+			ret = (ret > 0) ? ret - 1 : ret + 1;
 		}
 		st = push(A, st);
-		i++;
 		//disp_piles(st);
 	}
-	while (check_tab(st.pile[A], st.s1) != 1)
-	{
-		st = rotate(A, st);
-		i++;
-	}
-	ft_miniprintf("Success in %d operations !\n", i);
 	//disp_piles(st);
+	ret = r_or_rr_cmp_min(st, min);
+	while (ret != 0)
+	{
+		st = (ret > 0) ? rotate(A, st) : reverse_rotate(A, st);
+		ret = (ret > 0) ? ret - 1 : ret + 1;
+	}
+	ft_putchar('\n');
 	return (st);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 12:04:41 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/02/27 15:54:12 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/03 17:39:51 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,27 @@ t_pile	read_stdin(t_pile st)
 	return (st);
 }
 
+int		count_errors(int *tab, int size)
+{
+	int		i;
+	int		errors;
+
+	i = 0;
+	errors = 0;
+	//aller au min et faire le tour pour plus de precisions
+	while (i != size - 1)
+	{
+		if (tab[i] < tab[i + 1])
+			errors++;
+		i++;
+	}
+	return (errors);
+}
+
 int		main(int ac, char **av)
 {
 	t_pile	st;
+	int		ret;
 
 	if (check_error(ac, av) == 0)
 	{
@@ -98,7 +116,11 @@ int		main(int ac, char **av)
 	}
 	st = get_piles(st, ac, av);
 	//st = read_stdin(st);
-	st = split_sort(st);
+	ret = count_errors(st.pile[A], st.s1);
+	if (ret == 1)// if only_simple_errors ??
+		st = basic_sort(st);
+	else if (ret != 0)
+		st = insert_sort(st);
 	free(st.pile[A]);
 	free(st.pile[B]);
 	free(st.pile);

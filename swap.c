@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 12:04:41 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/02/27 13:17:51 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/03 16:07:17 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ t_pile	swap(t_ab ab, t_pile st)
 	int		tmp;
 	int		size;
 
-	size = (ab == A) ? st.s1 : st.s2;
-	tmp = st.pile[ab][size - 2];
-	st.pile[ab][size - 2] = st.pile[ab][size - 1];
-	st.pile[ab][size - 1] = tmp;
+	(ab == A) ? ft_putstr("sa ") : ft_putstr("sb ");
+	size = (ab == A) ? END_A : END_B;
+	if (size <= 0)
+		return (st);
+	tmp = st.pile[ab][size - 1];
+	st.pile[ab][size - 1] = st.pile[ab][size];
+	st.pile[ab][size] = tmp;
 	return (st);
 }
 
@@ -29,7 +32,10 @@ t_pile	rotate(t_ab ab, t_pile st)
 	int		tmp;
 	int		i;
 
-	i = (ab == A) ? st.s1 - 1: st.s2 - 1;
+	(ab == A) ? ft_putstr("ra ") : ft_putstr("rb ");
+	i = (ab == A) ? END_A : END_B;
+	if (i <= 0)
+		return (st);
 	while (i != 0)
 	{
 		tmp = st.pile[ab][i];
@@ -46,7 +52,10 @@ t_pile	reverse_rotate(t_ab ab, t_pile st)
 	int		i;
 	int		size;
 
-	size = (ab == A) ? st.s1 - 1: st.s2 - 1;
+	(ab == A) ? ft_putstr("rra ") : ft_putstr("rrb ");
+	size = (ab == A) ? END_A : END_B;
+	if (size <= 0)
+		return (st);
 	i = 0;
 	while (i != size)
 	{
@@ -60,17 +69,14 @@ t_pile	reverse_rotate(t_ab ab, t_pile st)
 
 t_pile	push(t_ab ab, t_pile st)
 {
+	(ab == A) ? ft_putstr("pa ") : ft_putstr("pb ");
+	if ((ab == A && st.s2 == 0) || (ab == B && st.s1 == 0))
+		return (st);
 	if (ab == A)
-	{
 		st.pile[A][st.s1] = st.pile[B][st.s2 - 1];
-		st.s1++;
-		st.s2--;
-	}
 	else
-	{
 		st.pile[B][st.s2] = st.pile[A][st.s1 - 1];
-		st.s2++;
-		st.s1--;
-	}
+	(ab == A) ? st.s1++ : st.s1--;
+	(ab == A) ? st.s2-- : st.s2++;
 	return (st);
 }

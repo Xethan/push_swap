@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:00:55 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/02/27 15:20:42 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/03 15:46:45 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int			check_error(int ac, char **av)
 
 	i = 1;
 	if (ac == 1)
-		return (0);
+		exit(EXIT_SUCCESS);
 	while (av[i])
 	{
 		if (check_str(av[i]) == 0)
