@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:26:10 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/03 17:10:58 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/04 17:19:30 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ t_pile	insert_sort(t_pile st)
 		if (st.pile[A][END_A] > st.pile[A][END_A - 1])
 			st = push(B, st);
 		else
-			st = rotate(A, st);
+			st = rotate(A, st);// opti here
+		//disp_piles(st);
 	}
 	//disp_piles(st);
 	while (st.s2 != 0)

@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 12:04:41 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/03 17:39:51 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/04 16:36:33 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,16 +90,24 @@ t_pile	read_stdin(t_pile st)
 int		count_errors(int *tab, int size)
 {
 	int		i;
+	int		j;
 	int		errors;
+	int		max;
 
-	i = 0;
+	max = get_max_pos(tab, size);
+	i = max;
+	max = (max == 0) ? size : max;
 	errors = 0;
-	//aller au min et faire le tour pour plus de precisions
-	while (i != size - 1)
+	while (i != max - 1)
 	{
-		if (tab[i] < tab[i + 1])
+		j = (i == size - 1) ? 0 : i + 1;
+		while (j != max - 1 && tab[i] < tab[j])
+		{
 			errors++;
-		i++;
+			if (++j == size)
+				j = 0;
+		}
+		i = j;
 	}
 	return (errors);
 }
@@ -115,11 +123,14 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	st = get_piles(st, ac, av);
+	//disp_piles(st);
 	//st = read_stdin(st);
 	ret = count_errors(st.pile[A], st.s1);
-	if (ret == 1)// if only_simple_errors ??
-		st = basic_sort(st);
-	else if (ret != 0)
+	(void)ret;
+	//ft_putnbr_nl(ret);
+	//if (ret <= 3)// if only_simple_errors ??
+	//	st = bubble_sort(st);
+	//else
 		st = insert_sort(st);
 	free(st.pile[A]);
 	free(st.pile[B]);

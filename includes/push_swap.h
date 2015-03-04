@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 12:04:41 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/03 17:11:38 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/04 12:42:49 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,15 @@ t_pile			push(t_ab ab, t_pile st);
 int				check_error(int ac, char **av);
 
 t_pile			insert_sort(t_pile st);
-t_pile			basic_sort(t_pile st);
+t_pile			bubble_sort(t_pile st);
 
 int				get_max(int *tab, int size);
+int				get_max_pos(int *tab, int size);
 int				get_min(int *tab, int size);
 int				r_or_rr_cmp_max(t_pile st, int max);
 int				r_or_rr_cmp_min(t_pile st, int min);
 int				check_tab(int *tab, int size);
+int				count_errors(int *tab, int size);
 
 void			disp_piles(t_pile st);
 
