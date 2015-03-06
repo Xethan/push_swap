@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 17:06:04 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/04 12:14:18 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/06 18:03:12 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int		r_or_rr_cmp_max(t_pile st, int max)
 	i = 0;
 	while (st.pile[A][i] != max)
 		i++;
-	return (i < st.s1 / 2) ? - i : st.s1 - i;
+	return (i < st.s1 / 2) ? -i : st.s1 - i;
 }
 
 int		r_or_rr_cmp_min(t_pile st, int min)
@@ -77,7 +77,7 @@ int		r_or_rr_cmp_min(t_pile st, int min)
 	i = 0;
 	while (st.pile[A][i] != min)
 		i++;
-	return (i < st.s1 / 2) ? - i - 1 : END_A - i;
+	return (i < st.s1 / 2) ? -i - 1 : st.s1 - i - 1;
 }
 
 int		check_tab(int *tab, int size)

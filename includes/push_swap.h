@@ -5,19 +5,22 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/27 12:04:41 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/04 12:42:49 by ncolliau         ###   ########.fr       */
+/*   Created: 2015/03/06 17:11:01 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/03/06 17:46:15 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
+
 # define PUSH_SWAP_H
 
 # include "libft.h"
+
 # include "get_next_line.h"
 
-# define END_A	(st.s1 - 1)
-# define END_B	(st.s2 - 1)
+# define END_A	st.pile[A][st.s1 - 1]
+
+# define END_B	st.pile[B][st.s2 - 1]
 
 typedef enum	e_ab
 {
@@ -38,7 +41,9 @@ t_pile			push(t_ab ab, t_pile st);
 
 int				check_error(int ac, char **av);
 
+t_pile			pivot_sort(t_pile st);
 t_pile			insert_sort(t_pile st);
+t_pile			basic_sort(t_pile st);
 t_pile			bubble_sort(t_pile st);
 
 int				get_max(int *tab, int size);

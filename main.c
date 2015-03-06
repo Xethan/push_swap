@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/27 12:04:41 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/04 16:36:33 by ncolliau         ###   ########.fr       */
+/*   Created: 2015/03/06 18:00:42 by ncolliau          #+#    #+#             */
+/*   Updated: 2015/03/06 18:00:51 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,11 +127,12 @@ int		main(int ac, char **av)
 	//st = read_stdin(st);
 	ret = count_errors(st.pile[A], st.s1);
 	(void)ret;
-	//ft_putnbr_nl(ret);
-	//if (ret <= 3)// if only_simple_errors ??
-	//	st = bubble_sort(st);
-	//else
-		st = insert_sort(st);
+	st = pivot_sort(st);
+	//st = basic_sort(st);
+	//st = insert_sort(st);
+	//st = bubble_sort(st);
+	if (check_tab(st.pile[A], st.s1) == 1 && st.s2 == 0)
+		ft_putchar('\n');
 	free(st.pile[A]);
 	free(st.pile[B]);
 	free(st.pile);

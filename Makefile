@@ -6,13 +6,14 @@
 #    By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/14 11:02:20 by ncolliau          #+#    #+#              #
-#    Updated: 2015/03/03 17:08:53 by ncolliau         ###   ########.fr        #
+#    Updated: 2015/03/06 18:02:40 by ncolliau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-OBJ =	main.o swap.o insert_sort.o basic_sort.o error.o tools.o \
+OBJ =	main.o modif_pile.o insert_sort.o pivot_sort.o basic_sort.o bubble_sort.o \
+		error.o tools.o \
 		get_next_line.o
 
 PATH_INCLUDES = includes/

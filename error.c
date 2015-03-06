@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:00:55 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/03 15:46:45 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/06 17:07:52 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static int	check_str(char *str)
 	return (1);
 }
 
-int		check_double(char **av)
+static int	check_double(char **av)
 {
 	int		i;
 	int		j;
