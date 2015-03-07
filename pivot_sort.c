@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 15:02:46 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/06 18:00:09 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/07 17:56:18 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ int		get_pivot(t_pile st)
 	{
 		less = 0;
 		pivot = (min + max) / 2;
-		i = 0;
-		while (i != st.s1)
-		{
+		i = -1;
+		while (++i != st.s1)
 			if (st.pile[A][i] < pivot)
 				less++;
-			i++;
-		}
 		if (less < 9 * st.s1 / 100)
 			min = pivot;
 		else
@@ -62,8 +59,5 @@ t_pile	pivot_sort(t_pile st)
 			i++;
 		}
 	}
-	//st = basic_sort(st);
-	st = bubble_sort(st);
-	st = insert_sort(st);
 	return (st);
 }

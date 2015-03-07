@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 17:11:01 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/06 17:46:15 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/07 17:53:40 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
-
-# include "get_next_line.h"
 
 # define END_A	st.pile[A][st.s1 - 1]
 
@@ -44,16 +42,12 @@ int				check_error(int ac, char **av);
 t_pile			pivot_sort(t_pile st);
 t_pile			insert_sort(t_pile st);
 t_pile			basic_sort(t_pile st);
-t_pile			bubble_sort(t_pile st);
+t_pile			clever_sort(t_pile st);
 
 int				get_max(int *tab, int size);
-int				get_max_pos(int *tab, int size);
 int				get_min(int *tab, int size);
 int				r_or_rr_cmp_max(t_pile st, int max);
 int				r_or_rr_cmp_min(t_pile st, int min);
 int				check_tab(int *tab, int size);
-int				count_errors(int *tab, int size);
-
-void			disp_piles(t_pile st);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 14:26:10 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/06 17:15:45 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/07 18:05:01 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,37 @@ int		r_or_rr(t_pile st)
 	return (i < st.s1 / 2) ? -i - 1 : st.s1 - i - 1;
 }
 
-t_pile	insert_sort(t_pile st)
+int		how_many_rot(t_pile st)
 {
 	int		max;
 	int		min;
-	int		ret;
+	int		rot;
+
+	max = get_max(st.pile[A], st.s1);
+	min = get_min(st.pile[A], st.s1);
+	if (END_B > max)
+		rot = r_or_rr_cmp_max(st, max);
+	else if (END_B < min)
+		rot = r_or_rr_cmp_min(st, min);
+	else
+		rot = r_or_rr(st);
+	return (rot);
+}
+
+t_pile	rotation(t_pile st, int rot)
+{
+	while (rot != 0)
+	{
+		st = (rot > 0) ? rotate(A, st) : reverse_rotate(A, st);
+		rot = (rot > 0) ? rot - 1 : rot + 1;
+	}
+	return (st);
+}
+
+t_pile	insert_sort(t_pile st)
+{
+	int		min;
+	int		rot;
 
 	while (check_tab(st.pile[A], st.s1) != 1)
 	{
@@ -39,27 +65,12 @@ t_pile	insert_sort(t_pile st)
 	}
 	while (st.s2 != 0)
 	{
-		max = get_max(st.pile[A], st.s1);
-		min = get_min(st.pile[A], st.s1);
-		if (END_B > max)
-			ret = r_or_rr_cmp_max(st, max);
-		else if (END_B < min)
-			ret = r_or_rr_cmp_min(st, min);
-		else
-			ret = r_or_rr(st);
-		while (ret != 0)
-		{
-			st = (ret > 0) ? rotate(A, st) : reverse_rotate(A, st);
-			ret = (ret > 0) ? ret - 1 : ret + 1;
-		}
+		rot = how_many_rot(st);
+		st = rotation(st, rot);
 		st = push(A, st);
 	}
 	min = get_min(st.pile[A], st.s1);
-	ret = r_or_rr_cmp_min(st, min);
-	while (ret != 0)
-	{
-		st = (ret > 0) ? rotate(A, st) : reverse_rotate(A, st);
-		ret = (ret > 0) ? ret - 1 : ret + 1;
-	}
+	rot = r_or_rr_cmp_min(st, min);
+	st = rotation(st, rot);
 	return (st);
 }

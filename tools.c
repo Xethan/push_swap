@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/03 17:06:04 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/06 18:03:12 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/07 17:53:21 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ int		get_max(int *tab, int size)
 	{
 		if (tab[i] > max)
 			max = tab[i];
-		i++;
-	}
-	return (max);
-}
-
-int		get_max_pos(int *tab, int size)
-{
-	int		i;
-	int		max;
-
-	i = 1;
-	max = 0;
-	while (i != size)
-	{
-		if (tab[i] > tab[max])
-			max = i;
 		i++;
 	}
 	return (max);

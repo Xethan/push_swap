@@ -6,19 +6,18 @@
 #    By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/12/14 11:02:20 by ncolliau          #+#    #+#              #
-#    Updated: 2015/03/06 18:02:40 by ncolliau         ###   ########.fr        #
+#    Updated: 2015/03/07 17:51:09 by ncolliau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
 
-OBJ =	main.o modif_pile.o insert_sort.o pivot_sort.o basic_sort.o bubble_sort.o \
-		error.o tools.o \
-		get_next_line.o
+OBJ =	main.o modif_pile.o pivot_sort.o clever_sort.o insert_sort.o \
+		error.o tools.o
 
 PATH_INCLUDES = includes/
 
-INCLUDES_NAME = push_swap.h get_next_line.h libft.h
+INCLUDES_NAME = push_swap.h libft.h
 
 INCLUDES = $(addprefix $(PATH_INCLUDES),$(INCLUDES_NAME))
 
