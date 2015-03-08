@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/27 15:00:55 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/06 17:07:52 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/08 16:52:54 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,36 @@ static int	check_number(char *str, char *cmp)
 	return (1);
 }
 
-static int	check_str(char *str)
+static int	check_if_digits(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
 		if (ft_isdigit(str[i]) == 0)
-			if (str[i] != '-' && str[i] != '+')
-				return (0);
+			return (0);
 		i++;
 	}
+	return (i == 0) ? 0 : 1;
+}
+
+static int	check_str(char *str)
+{
 	if (str[0] == '-')
 	{
-		if (check_number(str + 1, "2147483648") < 0)
+		if (check_if_digits(str + 1) == 0)
+			return (0);
+		if (check_number(str + 1, "2147483647") < 0)
 			return (0);
 	}
 	else
 	{
 		if (str[0] == '+')
 			str++;
-		if (check_number(str, "2147483647") < 0)
+		if (check_if_digits(str) == 0)
+			return (0);
+		if (check_number(str, "2147483648") < 0)
 			return (0);
 	}
 	return (1);

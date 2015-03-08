@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 17:11:01 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/07 17:53:40 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/08 16:05:52 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef enum	e_ab
 {
-	A = 0, B = 1
+	A = -1, B = 1
 }				t_ab;
 
 typedef struct	s_pile

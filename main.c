@@ -6,7 +6,7 @@
 /*   By: ncolliau <ncolliau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/03/06 18:00:42 by ncolliau          #+#    #+#             */
-/*   Updated: 2015/03/07 17:52:22 by ncolliau         ###   ########.fr       */
+/*   Updated: 2015/03/08 16:29:42 by ncolliau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_pile	get_piles(t_pile st, int ac, char **av)
 
 	i = 1;
 	st.pile = (int **)malloc(2 * sizeof(int *));
-	st.pile[B] = (int *)malloc((ac - 1) * sizeof(int));
+	st.pile[B] = (int *)malloc(1 * sizeof(int));
 	st.s2 = 0;
 	st.s1 = ac - 1;
 	st.pile[A] = (int *)malloc((ac - 1) * sizeof(int));
